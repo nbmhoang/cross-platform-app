@@ -9,3 +9,4 @@
 1. Nguyen Huu Ngoc Triem
 
 ## Link Trello: https://trello.com/b/bs5YaLqO/crossplatformapp-react-native-6
+## Backlog: https://docs.google.com/spreadsheets/d/1Ozxie9jrdFINPKjGQkc7VWrpxyxKsnkR0qunWegAUMI/edit?usp=sharing
