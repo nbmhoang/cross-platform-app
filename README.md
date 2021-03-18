@@ -1,6 +1,6 @@
 # Nhóm: React Native 6
 
-## Tên đề tài: Ứng dụng tư vấn tuyển sinh cho Đại học Đà Nẵng và các trường thành viên
+## Tên đề tài: Ứng dụng tuyển sinh cho Đại học Đà Nẵng và các trường thành viên
 
 ## Thành viên:
 1. Le Quang Duat
