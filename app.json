@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "cross-platform-app",
-    "slug": "cross-platform-app",
+    "name": "UDN Admission",
+    "slug": "udn-admission",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/udn_square.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
