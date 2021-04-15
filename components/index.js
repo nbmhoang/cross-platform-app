@@ -7,9 +7,9 @@ import image from '../assets/images/carousel/0.jpg';
 
 import homeStyle from "./styles";
 
-const MenuOption = ({ label }) => {
+const MenuOption = ({ label, name, navigation }) => {
     return (
-        <Pressable style={homeStyle.menuOption} onPress={() => console.log(label)}>
+        <Pressable style={homeStyle.menuOption} onPress={() => navigation.navigate('Home')}>
             <Text style={homeStyle.menuOptionText}>{label}</Text>
         </Pressable>
     )
@@ -17,16 +17,16 @@ const MenuOption = ({ label }) => {
 }
 
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     const option = [
-        { label: 'Tin tức tuyển sinh' },
-        { label: 'Đăng ký xét tuyển' },
-        { label: 'Tra cứu điểm chuẩn' },
-        { label: 'Sau đại học' },
-        { label: 'Hỏi đáp tuyển sinh' },
-        { label: 'Tin tức về Đại Học Đà Nẵng' },
-        { label: 'Các trường thành viên' }
+        { label: 'Tin tức tuyển sinh', name: 'News' },
+        { label: 'Đăng ký xét tuyển', name: 'News' },
+        { label: 'Tra cứu điểm chuẩn', name: 'News' },
+        { label: 'Sau đại học', name: 'News' },
+        { label: 'Hỏi đáp tuyển sinh', name: 'News' },
+        { label: 'Tin tức về Đại Học Đà Nẵng', name: 'News' },
+        { label: 'Các trường thành viên', name: 'News' }
     ]
 
     return (
@@ -42,11 +42,11 @@ const Home = () => {
         {/* Assume this is carousel */}
         <Image source={image} style={homeStyle.fakeCarousel} />
         {option.map((item, index) => (
-            <MenuOption key={index} label={item.label}/>
+            <MenuOption key={index} label={item.label} name={item.name} navigation={navigation}/>
         ))}
-        <Button mode="contained">
+        {/* <Button mode="contained">
             Go to new
-        </Button>
+        </Button> */}
 
         </>
     )
