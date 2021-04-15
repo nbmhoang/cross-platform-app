@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { registerRootComponent } from 'expo';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { NavigationContainer } from '@react-navigation/native';
+import { configureFonts, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme as NativeTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,7 +21,12 @@ const HomeStackScreen = () => {
   const Tab = createBottomTabNavigator();;
 
   return (
-      <Tab.Navigator>
+      <Tab.Navigator
+      tabBarOptions={{
+        style: {
+          backgroundColor: '#fff'
+        }
+      }}>
           <Tab.Screen
             name="News"
             component={News}
@@ -75,11 +80,44 @@ const HomeStackScreen = () => {
 
 
 export default function Main() {
+
+  const fontConfig = {
+    web: {
+
+    },
+    android: {
+      regular: {
+        fontFamily: 'arial',
+        fontWeight: 'normal'
+      }
+    }
+  }
+
+  const theme = {
+    ...DefaultTheme,
+    roundness: 10,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#054770',
+      accent: '#054770',
+    },
+    fonts: configureFonts(fontConfig)
+  }
+
+  const defaultNavigationTheme = {
+    ...NativeTheme,
+    colors: {
+      ...NativeTheme.colors,
+      background: '#fff'
+    }
+
+  }
+
   const Stack = createStackNavigator();
 
   return (
-    <NavigationContainer>
-        <PaperProvider>
+    <NavigationContainer theme={defaultNavigationTheme}>
+        <PaperProvider theme={theme}>
         <Stack.Navigator screenOptions={{
           headerStyle: { elevation: 0 },
           cardStyle: { backgroundColor: '#fff' }
