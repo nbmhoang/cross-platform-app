@@ -12,7 +12,7 @@ import Home from "./components";
 import News from "./components/news";
 import Setting from "./components/setting";
 import Search from "./components/search";
-import FAQ from "./components/faq";
+import FAQScreen from "./components/faq";
 import Notification from "./components/notification";
 
 
@@ -46,8 +46,8 @@ const HomeStackScreen = () => {
               )
             }} />
           <Tab.Screen
-            name="FAQ"
-            component={FAQ}
+            name="FAQScreen"
+            component={FAQScreen}
             options={{
               tabBarLabel: 'Hỏi đáp TS',
               tabBarIcon: ({ color, size}) => (
@@ -87,7 +87,7 @@ export default function Main() {
     },
     android: {
       regular: {
-        fontFamily: 'arial',
+        fontFamily: 'Roboto',
         fontWeight: 'normal'
       }
     }
@@ -95,7 +95,7 @@ export default function Main() {
 
   const theme = {
     ...DefaultTheme,
-    roundness: 10,
+    roundness: 5,
     colors: {
       ...DefaultTheme.colors,
       primary: '#054770',
@@ -119,7 +119,8 @@ export default function Main() {
     <NavigationContainer theme={defaultNavigationTheme}>
         <PaperProvider theme={theme}>
         <Stack.Navigator screenOptions={{
-          headerStyle: { elevation: 0 },
+          headerStyle: { elevation: 0, backgroundColor: '#054770'},
+          headerTintColor: '#fff',
           cardStyle: { backgroundColor: '#fff' }
         }}>
             <Stack.Screen options={{headerShown: false}} name="Index" component={Home} />
