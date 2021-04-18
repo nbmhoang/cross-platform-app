@@ -11,7 +11,7 @@ import { name as appName } from './app.json';
 import Home from "./components";
 import News from "./components/news";
 import Setting from "./components/setting";
-import Search from "./components/search";
+import LookupScreen from "./components/lookup";
 import FAQScreen from "./components/faq";
 import Notification from "./components/notification";
 
@@ -37,8 +37,8 @@ const HomeStackScreen = () => {
               )
             }} />
           <Tab.Screen
-            name="Search"
-            component={Search}
+            name="LookupScreen"
+            component={LookupScreen}
             options={{
               tabBarLabel: 'Tra cứu',
               tabBarIcon: ({ color, size}) => (
