@@ -7,5 +7,23 @@ module.exports = function(api) {
         plugins: ['react-native-paper/babel'],
       },
     },
+    plugins: [
+      [
+        "module-resolver",
+        {
+          "root": ["./"],
+          "alias": {
+            "@components": "./components",
+            // Use later
+            "@reducers": "./reducers",
+            "@config": "./firebasecfg",
+            "@utils": "./src/utils",
+            "@services": "./src/services",
+            "@assets": "./assets",
+            "@constants": "./src/constants"
+          }
+        },
+      ],
+    ],
   };
 };
