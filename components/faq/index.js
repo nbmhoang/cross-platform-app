@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator } from '@react-navigation/stack';
-import MakeQuestion from './makequestion';
+import MakeQuestion from './MakeQuestion';
 
 const Question = ({question, answer}) => {
     return (
@@ -73,8 +73,7 @@ const styles = StyleSheet.create({
     }, 
     questionContainer: {
         fontSize: 16,
-        padding: 10,
-        textAlign: 'justify'
+        padding: 10
     },
     question: {
         fontSize: 16,

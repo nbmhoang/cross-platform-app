@@ -14,6 +14,7 @@ import Setting from "./components/setting";
 import LookupScreen from "./components/lookup";
 import FAQScreen from "./components/faq";
 import Notification from "./components/notification";
+import Registration from "@components/registration";
 
 
 const HomeStackScreen = () => {
@@ -125,6 +126,7 @@ export default function Main() {
         }}>
             <Stack.Screen options={{headerShown: false}} name="Index" component={Home} />
             <Stack.Screen name="Home" component={HomeStackScreen} />
+            <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
         </Stack.Navigator>
         </PaperProvider>
     </NavigationContainer>

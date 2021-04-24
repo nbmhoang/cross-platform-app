@@ -9,7 +9,7 @@ import homeStyle from "./styles";
 
 const MenuOption = ({ label, name, navigation }) => {
     return (
-        <Pressable style={homeStyle.menuOption} onPress={() => navigation.navigate('Home')}>
+        <Pressable style={homeStyle.menuOption} onPress={() => navigation.navigate({name})}>
             <Text style={homeStyle.menuOptionText}>{label}</Text>
         </Pressable>
     )
@@ -20,13 +20,13 @@ const MenuOption = ({ label, name, navigation }) => {
 const Home = ({ navigation }) => {
 
     const option = [
-        { label: 'Tin tức tuyển sinh', name: 'News' },
-        { label: 'Đăng ký xét tuyển', name: 'News' },
-        { label: 'Tra cứu điểm chuẩn', name: 'News' },
-        { label: 'Sau đại học', name: 'News' },
-        { label: 'Hỏi đáp tuyển sinh', name: 'News' },
-        { label: 'Tin tức về Đại Học Đà Nẵng', name: 'News' },
-        { label: 'Các trường thành viên', name: 'News' }
+        { label: 'Tin tức tuyển sinh', name: 'Home' },
+        { label: 'Đăng ký xét tuyển', name: 'Registration' },
+        { label: 'Tra cứu điểm chuẩn', name: 'Home' },
+        { label: 'Sau đại học', name: 'Home' },
+        { label: 'Hỏi đáp tuyển sinh', name: 'Home' },
+        { label: 'Tin tức về Đại Học Đà Nẵng', name: 'Home' },
+        { label: 'Các trường thành viên', name: 'Home' }
     ]
 
     return (
