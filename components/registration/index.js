@@ -2,12 +2,18 @@ import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, Image, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import DirectRegistration from "./DirectRegistration";
 import image from '@assets/images/carousel/0.jpg';
+import SchoolReportRegistration from "./SchoolReportRegistration";
+import GradesRegistration from "./GradesRegistration";
 
-const MenuOption = ({ text, color, name, navigation }) => {
+
+
+const MenuOption = ({ text, color, name }) => {
+    const navigation = useNavigation(); 
     return (
         <Pressable onPress={() => navigation.navigate(name)}>
             <View style={[styles.menuOption, {backgroundColor: color}]}>
@@ -22,8 +28,8 @@ const Index = () => {
 
     const option = [
         { text: 'XÉT TUYỂN THẲNG', color: '#F36C6C', name: 'DirectRegistration' },
-        { text: 'ĐĂNG KÝ XÉT HỌC BẠ', color: '#99EE9C', name: '' },
-        { text: 'ĐĂNG KÝ XÉT ĐIỂM THPT', color: '#6A9FD0', name: '' },
+        { text: 'ĐĂNG KÝ XÉT HỌC BẠ', color: '#99EE9C', name: 'SchoolReportRegistration' },
+        { text: 'ĐĂNG KÝ XÉT ĐIỂM THPT', color: '#6A9FD0', name: 'GradesRegistration' },
         { text: 'ĐĂNG KÝ XÉT TUYỂN ĐGNL', color: '#6A9FD0', name: '' },
         { text: 'ĐĂNG KÝ THEO PHƯƠNG THỨC RIÊNG', color: '#6A9FD0', name: '' }
     ]
@@ -31,8 +37,8 @@ const Index = () => {
     return (
         <View>
             <Image source={image} style={styles.fakeCarousel} />
-            {option.map((item) => (
-                <MenuOption text={item.text} color={item.color} />
+            {option.map((item, index) => (
+                <MenuOption key={index} text={item.text} color={item.color} name={item.name} />
             ))}
         </View>
     )
@@ -56,12 +62,22 @@ const Registration = ({ navigation }) => {
             <RegistrationStack.Screen
                 name="RegistrationIndex"
                 component={Index}
-                options={{ title: 'ĐĂNG KÝ XÉT TUYỂN'}}
+                options={{ title: 'ĐĂNG KÝ XÉT TUYỂN' }}
             />
             <RegistrationStack.Screen 
                 name="DirectRegistration"
                 component={DirectRegistration}
-                options={{ title: 'ĐĂNG KÝ XÉT TUYỂN THẲNG'}}
+                options={{ title: 'ĐĂNG KÝ XÉT TUYỂN THẲNG' }}
+            />
+            <RegistrationStack.Screen
+                name="SchoolReportRegistration"
+                component={SchoolReportRegistration}
+                options={{ title:'ĐĂNG KÝ XÉT HỌC BẠ' }}
+            />
+            <RegistrationStack.Screen
+                name="GradesRegistration"
+                component={GradesRegistration}
+                options={{ title:'ĐĂNG KÝ XÉT ĐIỂM THPT' }}
             />
         </RegistrationStack.Navigator>
     )

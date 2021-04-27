@@ -29,6 +29,89 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         textTransform: 'uppercase'
+    },
+    
+    container: {
+        padding: 10
+    },
+    textTitle: {
+        fontSize: 16,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        color: '#054770'
+    },
+
+    // Registration Form
+    inputRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    input1: {
+        width: deviceWidth*0.3,
+        backgroundColor: '#fff'
+    },
+    input2: {
+        width: deviceWidth*0.46,
+        backgroundColor: '#fff'
+    },
+    input3: {
+        backgroundColor: '#fff'
+    },
+    radioRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 10
+    },
+    radioItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    pickerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    pickerView: {
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: '#AAAAAA',
+        marginTop: 6
+    },
+    picker: {
+        height: 40,
+        fontSize: 16
+    },
+    half: {
+        width: deviceWidth*0.45,
+        textAlign: 'center'
+    },
+    text1: {
+        fontSize: 16
+    },
+    text2: {
+        fontSize: 14,
+        fontStyle: 'italic',
+        letterSpacing: 0.4,
+        marginTop: 15,
+        marginBottom: 15
+    },
+    text3: {
+        fontSize: 12,
+        color: '#054770',
+        fontStyle: 'italic'
+    },
+    button: {
+        flex: 0.49,
+        marginBottom: 10
+    },
+    buttonRow: {
+        flexDirection: 'row-reverse',
+        marginTop: 10,
+        marginBottom: 10
+    },
+    button1: {
+        flex: 0.3
     }
 })
 

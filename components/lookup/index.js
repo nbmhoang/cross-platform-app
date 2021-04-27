@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View, ScrollView, TextInput, Image, Text, TouchableOpacity } from 'react-native';
-import { Picker as SelectPicker  } from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import { Button, Divider } from 'react-native-paper';
 
 import CourseInfo from "./CourseInfo";
@@ -80,16 +80,17 @@ const Lookup = ({ navigation }) => {
         <ScrollView style={styles.container}>
             <TextInput style={styles.input} placeholder="Ngành học" />
             <View style={styles.pickerView}>
-                <SelectPicker
+                <Picker
                     selectedValue={selectedSchool}
                     style={styles.picker}
                     mode="dropdown"
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedSchool(itemValue)
                     }>
-                    <SelectPicker.Item label="Đại học Bách Khoa" value="BK" />
-                    <SelectPicker.Item label="Đại học CNTT&TT Việt Hàn" value="VH" />
-                </SelectPicker>
+                    <Picker.Item label="Trường" value="0" />
+                    <Picker.Item label="Đại học Bách Khoa" value="BK" />
+                    <Picker.Item label="Đại học CNTT&TT Việt Hàn" value="VH" />
+                </Picker>
             </View>
             <Button mode="contained">TÌM KIẾM</Button>
             {courseData.map((item) => (
