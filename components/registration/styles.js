@@ -118,6 +118,58 @@ const styles = StyleSheet.create({
     },
     button1: {
         flex: 0.3
+    },
+
+    // Modal
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10,
+        width: deviceWidth*0.95,
+        alignSelf: 'center'
+    },
+    modalView: {
+        margin: 10,
+        backgroundColor: "white",
+        borderRadius: 5,
+        padding: 20,
+        
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    textStyle: {
+        color: "#054770",
+        fontWeight: "bold",
+        textAlign: "right",
+        textTransform: 'uppercase',
+        marginTop: 10
+    },
+    modalTitle: {
+        textAlign: "center",
+        color: '#054770',
+        lineHeight: 24
+    },
+    modalTitle2: {
+        fontWeight: 'bold',
+        borderBottomWidth: 1,
+        borderColor: '#000',
+        marginTop: 15,
+        marginBottom: 5,
+        paddingBottom: 5
+    },
+    gradesView: {
+        flexDirection: 'row'
+    },
+    gradesItem: {
+        width: '50%',
+        textAlign: 'center'
     }
 })
 

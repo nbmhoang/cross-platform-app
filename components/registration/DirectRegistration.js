@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, Modal, Pressable } from "react-native";
 import { TextInput, RadioButton, Button } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import styles from "./styles";
@@ -11,6 +11,7 @@ const DirectRegistration = () => {
     const [selectedSchool, setSelectedSchool] = React.useState();
     const [selectedSchool2, setSelectedSchool2] = React.useState();
     const [selectedCourse, setSelectedCourse] = React.useState();
+    const [modalVisible, setModalVisible] = React.useState(false);
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.textTitle}>Thông tin học sinh</Text>
@@ -132,9 +133,41 @@ const DirectRegistration = () => {
                 <Button style={styles.button1} mode='outlined'>CHỌN ẢNH</Button>
             </View>
             <View style={styles.buttonRow2}>
-                <Button style={styles.button} mode='contained'>Xem lại</Button>
+                <Button style={styles.button} mode='contained' onPress={() => setModalVisible(true)}>Xem lại</Button>
                 <Button style={styles.button} mode='contained'>Đăng ký</Button>
             </View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => { setModalVisible(!modalVisible) }}
+            >
+                <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalTitle}>THÔNG TIN HỌC SINH XÉT TUYỂN THẲNG VÀO ĐẠI HỌC</Text>
+                    <Text style={styles.modalTitle2}>Thông tin học sinh</Text>
+                    <Text>Họ và tên:</Text>
+                    <Text>Giới tính:</Text>
+                    <Text>Ngày sinh:</Text>
+                    <Text>Điện thoại:</Text>
+                    <Text>Email:</Text>
+                    <Text>Facebook:</Text>
+                    <Text>Địa chỉ nhận giấy báo:</Text>   
+                    <Text>Tỉnh/Thành phố:</Text>
+                    <Text>Trường THPT:</Text>
+                    <Text>Đạt giải:</Text>
+                    <Text>Cuộc thi:</Text>
+                    <Text>Năm:</Text>
+                    <Text>Tên môn đạt giải:</Text>
+                    <Text>Ngành đăng ký:</Text>
+                    <Pressable
+                    onPress={() => setModalVisible(!modalVisible)}
+                    >
+                    <Text style={styles.textStyle}>Thoát</Text>
+                    </Pressable>
+                </View>
+                </View>
+            </Modal>
         </ScrollView>
     )
 }
