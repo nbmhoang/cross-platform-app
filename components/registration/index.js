@@ -5,10 +5,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
-import DirectRegistration from "./DirectRegistration";
 import image from '@assets/images/carousel/0.jpg';
+import DirectRegistration from "./DirectRegistration";
 import SchoolReportRegistration from "./SchoolReportRegistration";
 import GradesRegistration from "./GradesRegistration";
+import AssessmentExam from "./AssessmentExam";
+import AnotherProjects from "./AnotherProjects";
 
 
 
@@ -30,8 +32,8 @@ const Index = () => {
         { text: 'XÉT TUYỂN THẲNG', color: '#F36C6C', name: 'DirectRegistration' },
         { text: 'ĐĂNG KÝ XÉT HỌC BẠ', color: '#99EE9C', name: 'SchoolReportRegistration' },
         { text: 'ĐĂNG KÝ XÉT ĐIỂM THPT', color: '#6A9FD0', name: 'GradesRegistration' },
-        { text: 'ĐĂNG KÝ XÉT TUYỂN ĐGNL', color: '#6A9FD0', name: '' },
-        { text: 'ĐĂNG KÝ THEO PHƯƠNG THỨC RIÊNG', color: '#6A9FD0', name: '' }
+        { text: 'ĐĂNG KÝ XÉT TUYỂN ĐGNL', color: '#6A9FD0', name: 'AssessmentExam' },
+        { text: 'ĐĂNG KÝ THEO PHƯƠNG THỨC RIÊNG', color: '#6A9FD0', name: 'AnotherProjects' }
     ]
 
     return (
@@ -78,6 +80,16 @@ const Registration = ({ navigation }) => {
                 name="GradesRegistration"
                 component={GradesRegistration}
                 options={{ title:'ĐĂNG KÝ XÉT ĐIỂM THPT' }}
+            />
+            <RegistrationStack.Screen
+                name="AssessmentExam"
+                component={AssessmentExam}
+                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO KÌ THI ĐGNL' }}
+            />
+            <RegistrationStack.Screen
+                name="AnotherProjects"
+                component={AnotherProjects}
+                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO ĐỀ ÁN RIÊNG' }}
             />
         </RegistrationStack.Navigator>
     )

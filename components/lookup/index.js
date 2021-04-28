@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, View, ScrollView, TextInput, Image, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Button, Divider } from 'react-native-paper';
 
 import CourseInfo from "./CourseInfo";
-
+import styles from './styles';
 
 const Course = ({ logoImage, courseName, schoolName, benchmark, onPress }) => {
     return (
@@ -134,48 +134,5 @@ const LookupScreen = () => {
         </LookupStack.Navigator>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 10
-    },
-    input: {
-        fontSize: 16,
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#AAAAAA',
-        borderRadius: 5,
-        paddingLeft: 10,
-        marginTop: 10
-    },
-    pickerView: {
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: '#AAAAAA',
-        marginTop: 15,
-        marginBottom: 15
-    },
-    picker: {
-        height: 40,
-        fontSize: 16
-    },
-    courseContainer: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        flexDirection: 'row'
-    },
-    logo: {
-        height: 84,
-        width: 84,
-        marginRight: 10
-    },
-    boldText: {
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    text: {
-        fontSize: 18,
-    }
-})
 
 export default LookupScreen;

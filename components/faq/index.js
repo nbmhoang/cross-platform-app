@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import MakeQuestion from './MakeQuestion';
+import styles from './styles';
 
 const Question = ({question, answer}) => {
     return (
@@ -64,37 +66,5 @@ const FAQScreen = () => {
         </FAQStack.Navigator>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        paddingLeft:10,
-        paddingRight: 10,
-        paddingTop: 10
-    }, 
-    questionContainer: {
-        fontSize: 16,
-        padding: 10
-    },
-    question: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'justify',
-    },
-    ansText: {
-        fontSize: 16,
-        fontWeight: 'bold'
-    },
-    answer: {
-        fontSize: 16,
-        textAlign: 'justify'
-    },
-    addQuestion: {
-        position: 'absolute',
-        bottom: 15,
-        right: 15,
-        backgroundColor: '#fff',   
-        borderRadius: 100                                                       
-    }
-})
 
 export default FAQScreen;

@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textTransform: 'uppercase',
         textAlign: 'center',
-        color: '#054770'
+        color: '#054770',
+        marginBottom: 15
     },
 
     // Registration Form
@@ -109,6 +110,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         marginTop: 10,
         marginBottom: 10
+    },
+    buttonRow2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20
     },
     button1: {
         flex: 0.3

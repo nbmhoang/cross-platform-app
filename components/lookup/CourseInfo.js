@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { List } from 'react-native-paper';
 
+import styles from './styles';
 
 const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCode, yearStart }) => {
 
@@ -18,7 +19,7 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
                         <Text style={styles.schoolName}>{schoolName}</Text>
                         <Text style={styles.courseName}>{courseName}</Text>{}
                     </View>
-                    <Image source={logoImage} style={styles.logo} />
+                    <Image source={logoImage} style={styles.logo2} />
                 </View>
                 <List.Section>
                     <List.Accordion
@@ -84,50 +85,5 @@ const CourseInfo = ({ route }) => {
         />
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 10
-    },
-    banner: {
-        height: 113,
-        width: "100%"
-    },
-    title: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    schoolName: {
-        fontSize: 14,
-        textTransform: 'uppercase',
-        fontWeight: 'bold'
-    },
-    courseName: {
-        fontSize: 14,
-        textTransform: 'uppercase'
-    },
-    logo: {
-        height: 50,
-        width: 50
-    },
-    list: {
-        backgroundColor: '#054770',
-        padding: 0,
-        marginTop: 5,
-        marginBottom: 5
-    },
-    listTitle: {
-        color: '#fff'
-    },
-    content: {
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 10
-    },
-    text: {
-        fontSize: 18
-    }
-})
 
 export default CourseInfo;

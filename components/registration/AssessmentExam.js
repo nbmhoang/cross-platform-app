@@ -4,13 +4,10 @@ import { TextInput, RadioButton, Button } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import styles from "./styles";
 
-const DirectRegistration = () => {
+const AssessmentExam = () => {
     const [value, setValue] = React.useState('male');
-    const [value2, setValue2] = React.useState('first');
     const [selectedCity, setSelectedCity] = React.useState();
     const [selectedSchool, setSelectedSchool] = React.useState();
-    const [selectedSchool2, setSelectedSchool2] = React.useState();
-    const [selectedCourse, setSelectedCourse] = React.useState();
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.textTitle}>Thông tin học sinh</Text>
@@ -38,7 +35,7 @@ const DirectRegistration = () => {
                 <View style={styles.pickerView}>
                     <Picker
                         selectedValue={selectedCity}
-                        style={[styles.picker, styles.half]}
+                        style={[styles.picker, styles.pickerRow, styles.half]}
                         mode="dropdown"
                         onValueChange={(itemValue, itemIndex) =>
                             setSelectedCity(itemValue)
@@ -52,7 +49,7 @@ const DirectRegistration = () => {
                 <View style={styles.pickerView}>
                     <Picker
                         selectedValue={selectedSchool}
-                        style={[styles.picker, styles.half]}
+                        style={[styles.picker, styles.pickerRow, styles.half]}
                         mode="dropdown"
                         onValueChange={(itemValue, itemIndex) =>
                             setSelectedSchool(itemValue)
@@ -63,70 +60,6 @@ const DirectRegistration = () => {
                         <Picker.Item label="2" value="2" />
                     </Picker>
                 </View>
-            </View>
-            <Text style={styles.text2}>Đạt giải</Text>
-            <RadioButton.Group onValueChange={value2 => setValue2(value2)} value={value2}>
-                <View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="first" />
-                        <Text style={styles.text1}>Giải nhất</Text>
-                    </View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="second" />
-                        <Text style={styles.text1}>Giải nhì</Text>
-                    </View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="third" />
-                        <Text style={styles.text1}>Giải ba</Text>
-                    </View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="consolation" />
-                        <Text style={styles.text1}>Giải khuyến khích</Text>
-                    </View>
-                </View>
-            </RadioButton.Group>
-            <Text style={styles.text2}>Cuộc thi</Text>
-            <RadioButton.Group>
-                <View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="1" />
-                        <Text style={styles.text1}>Kỳ thi chọn Học sinh Giỏi quốc gia</Text>
-                    </View>
-                    <View style={styles.radioItem}>
-                        <RadioButton value="2" />
-                        <Text style={styles.text1}>Cuộc thi Khoa học Kỹ thuật</Text>
-                    </View>
-                </View>
-            </RadioButton.Group>
-            <TextInput style={styles.input3} dense mode='outlined' placeholder="Năm" />
-            <TextInput style={styles.input3} dense mode='outlined' placeholder="Tên môn đạt giải" />
-            <View style={styles.pickerView}>
-                <Picker
-                    selectedValue={selectedSchool2}
-                    style={styles.picker}
-                    mode="dropdown"
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedSchool2(itemValue)
-                    }
-                >
-                    <Picker.Item label="Chọn trường" value="0" />
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                </Picker>
-            </View>
-            <View style={styles.pickerView}>
-                <Picker
-                    selectedValue={selectedCourse}
-                    style={styles.picker}
-                    mode="dropdown"
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedCourse(itemValue)
-                    }
-                >
-                    <Picker.Item label="Chọn ngành" value="0" />
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                </Picker>
             </View>
             <View style={styles.buttonRow}>
                 <Button style={styles.button1} mode='outlined'>CHỌN ẢNH</Button>
@@ -139,4 +72,4 @@ const DirectRegistration = () => {
     )
 }
 
-export default DirectRegistration;
+export default AssessmentExam;
