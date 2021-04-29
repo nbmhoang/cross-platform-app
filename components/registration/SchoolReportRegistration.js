@@ -17,6 +17,7 @@ const SchoolReportRegistration = () => {
     const [checked, setChecked] = React.useState(false);
     const [modalVisible, setModalVisible] = React.useState(false);
     return (
+        <>
         <ScrollView style={styles.container}>
             <Text style={styles.textTitle}>Thông tin học sinh</Text>
             <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
@@ -182,53 +183,54 @@ const SchoolReportRegistration = () => {
                 <Button style={styles.button} mode='contained' onPress={() => setModalVisible(true)}>Xem lại</Button>
                 <Button style={styles.button} mode='contained'>Đăng ký</Button>
             </View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => { setModalVisible(!modalVisible) }}
-            >
-                <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalTitle}>THÔNG TIN HỌC SINH XÉT TUYỂN THẲNG VÀO ĐẠI HỌC</Text>
-                    <Text style={styles.modalTitle2}>Thông tin học sinh</Text>
-                    <Text>Họ và tên:</Text>
-                    <Text>Giới tính:</Text>
-                    <Text>Ngày sinh:</Text>
-                    <Text>Điện thoại:</Text>
-                    <Text>Địa chỉ liên lạc:</Text>
-                    <Text>Tỉnh/Thành phố:</Text>
-                    <Text>Trường THPT:</Text>
-                    <Text style={styles.modalTitle2}>Thông tin đăng ký</Text>
-                    <Text>Trường: Đại học CNTT & TT Việt Hàn</Text>
-                    <Text>Ngành - Bậc: Công nghệ tin thông tin</Text>
-                    <Text>Nhóm môn: Toán, Lý, Hóa</Text>
-                    <Text style={styles.modalTitle2}>Thông tin học bạ</Text>
-                    <View style={styles.gradesView}>
-                        <Text style={styles.gradesItem}>Môn xét tuyển</Text>
-                        <Text style={styles.gradesItem}>Điểm TB cả năm lớp 12</Text>
-                    </View>
-                    <View style={styles.gradesView}>
-                        <Text style={styles.gradesItem}>Toán</Text>
-                        <Text style={styles.gradesItem}>8.7</Text>
-                    </View>
-                    <View style={styles.gradesView}>
-                        <Text style={styles.gradesItem}>Lý</Text>
-                        <Text style={styles.gradesItem}>9.6</Text>
-                    </View>
-                    <View style={styles.gradesView}>
-                        <Text style={styles.gradesItem}>Hóa</Text>
-                        <Text style={styles.gradesItem}>8.5</Text>
-                    </View>
-                    <Pressable
-                    onPress={() => setModalVisible(!modalVisible)}
-                    >
-                    <Text style={styles.textStyle}>Thoát</Text>
-                    </Pressable>
-                </View>
-                </View>
-            </Modal>
         </ScrollView>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => { setModalVisible(!modalVisible) }}
+        >
+            <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+                <Text style={styles.modalTitle}>THÔNG TIN HỌC SINH XÉT TUYỂN THẲNG VÀO ĐẠI HỌC</Text>
+                <Text style={styles.modalTitle2}>Thông tin học sinh</Text>
+                <Text>Họ và tên:</Text>
+                <Text>Giới tính:</Text>
+                <Text>Ngày sinh:</Text>
+                <Text>Điện thoại:</Text>
+                <Text>Địa chỉ liên lạc:</Text>
+                <Text>Tỉnh/Thành phố:</Text>
+                <Text>Trường THPT:</Text>
+                <Text style={styles.modalTitle2}>Thông tin đăng ký</Text>
+                <Text>Trường: Đại học CNTT & TT Việt Hàn</Text>
+                <Text>Ngành - Bậc: Công nghệ tin thông tin</Text>
+                <Text>Nhóm môn: Toán, Lý, Hóa</Text>
+                <Text style={styles.modalTitle2}>Thông tin học bạ</Text>
+                <View style={styles.gradesView}>
+                    <Text style={styles.gradesItem}>Môn xét tuyển</Text>
+                    <Text style={styles.gradesItem}>Điểm TB cả năm lớp 12</Text>
+                </View>
+                <View style={styles.gradesView}>
+                    <Text style={styles.gradesItem}>Toán</Text>
+                    <Text style={styles.gradesItem}>8.7</Text>
+                </View>
+                <View style={styles.gradesView}>
+                    <Text style={styles.gradesItem}>Lý</Text>
+                    <Text style={styles.gradesItem}>9.6</Text>
+                </View>
+                <View style={styles.gradesView}>
+                    <Text style={styles.gradesItem}>Hóa</Text>
+                    <Text style={styles.gradesItem}>8.5</Text>
+                </View>
+                <Pressable
+                onPress={() => setModalVisible(!modalVisible)}
+                >
+                <Text style={styles.textStyle}>Thoát</Text>
+                </Pressable>
+            </View>
+            </View>
+        </Modal>
+        </>
     )
 }
 

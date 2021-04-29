@@ -57,8 +57,7 @@ const Registration = ({ navigation }) => {
                 headerTintColor: '#fff',
                 headerTitleAlign: 'center',
                 cardStyle: { backgroundColor: '#fff' },
-                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.goBack(null)} size={24} color="white" /> ),
-                headerLeftContainerStyle: { left: 14}
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.goBack(null)} size={24} color="white" style={{padding: 15}}/> )
             }}
         >
             <RegistrationStack.Screen
