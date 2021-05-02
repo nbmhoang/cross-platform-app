@@ -32,10 +32,10 @@ const Home = ({ navigation }) => {
         { label: 'Tin tức tuyển sinh', screen: 'Home', subScreen: 'News'  },
         { label: 'Đăng ký xét tuyển', screen: 'Registration' },
         { label: 'Tra cứu điểm chuẩn', screen: 'Home', subScreen: 'Lookup' },
-        { label: 'Sau đại học', screen: 'Registration' },
-        { label: 'Hỏi đáp tuyển sinh', screen: 'Registration',subScreen: 'FAQ' },
+        { label: 'Sau đại học', screen: 'AfterUniversity' },
+        { label: 'Hỏi đáp tuyển sinh', screen: 'Home',subScreen: 'FAQ' },
         { label: 'Tin tức về Đại Học Đà Nẵng', screen: 'Registration' },
-        { label: 'Các trường thành viên', screen: 'Registration' }
+        { label: 'Các trường thành viên', screen: 'University' }
     ]
 
     return (

@@ -15,6 +15,8 @@ import LookupScreen from "./components/lookup";
 import FAQScreen from "./components/faq";
 import NotificationScreen from "./components/notification";
 import Registration from "@components/registration";
+import AfterUniversity from './components/after-university';
+import University from './components/university';
 
 
 const HomeStackScreen = () => {
@@ -128,6 +130,8 @@ export default function Main() {
             <Stack.Screen options={{headerShown: false}} name="Index" component={Home} />
             <Stack.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}} />
             <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
+            <Stack.Screen name="AfterUniversity" component={AfterUniversity} options={{headerShown: false}} />
+            <Stack.Screen name="University" component={University} options={{headerShown: false}} />
         </Stack.Navigator>
         </PaperProvider>
     </NavigationContainer>
