@@ -23,11 +23,11 @@ const NewsIndex = ({ navigation }) => {
             <View>
                 <Text style={styles.title1}>Tin tức nổi bật</Text>
                 <NewsItem 
-                    image={newsImage} 
+                    image={require('@assets/images/news/news1.png')}
                     title="Thông tin đăng ký xét tuyển vào các cơ sở đào tạo thành viên Đại học Đà Nẵng năm 2021" 
                     time="15 phút trước" 
                     onPress={() => navigation.navigate('NewDetail', {
-                        image: {newsImage},
+                        image: require('@assets/images/news/news1.png'),
                         title: "Thông tin đăng ký xét tuyển vào các cơ sở đào tạo thành viên Đại học Đà Nẵng năm 2021",
                         time: "15 phút trước"
                     })}
