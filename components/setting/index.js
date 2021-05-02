@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Avatar, Button, Divider, Switch } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import settingStyle from "./style";
 
@@ -37,4 +39,27 @@ const Setting = () => {
     )
 }
 
-export default Setting;
+const SettingStack = createStackNavigator();
+
+const SettingScreen = ({ navigation }) => {
+    return (
+        <SettingStack.Navigator
+            screenOptions={{
+                headerStyle: { elevation: 0, backgroundColor: '#054770' },
+                headerTitleStyle: { fontSize: 14 },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                cardStyle: { backgroundColor: '#fff' },
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.pop()} size={24} color="white" style={{padding: 15}}/> )
+            }}
+        >
+            <SettingStack.Screen 
+                name="Setting"
+                component={Setting}
+                options={{ title: 'CÀI ĐẶT ỨNG DỤNG' }}
+            />
+        </SettingStack.Navigator>
+    )
+}
+
+export default SettingScreen;

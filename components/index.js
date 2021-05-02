@@ -7,9 +7,18 @@ import image from '../assets/images/carousel/0.jpg';
 
 import homeStyle from "./styles";
 
-const MenuOption = ({ label, name, navigation }) => {
+const MenuOption = ({ label, screen, subScreen, navigation }) => {
     return (
-        <Pressable style={homeStyle.menuOption} onPress={() => navigation.navigate({name})}>
+        <Pressable 
+            style={homeStyle.menuOption} 
+            onPress={() => { 
+                if(screen=='Home') { 
+                    navigation.navigate('Home', {screen: subScreen})
+                } 
+                else { 
+                    navigation.push(screen)
+                }}}
+        >
             <Text style={homeStyle.menuOptionText}>{label}</Text>
         </Pressable>
     )
@@ -20,13 +29,13 @@ const MenuOption = ({ label, name, navigation }) => {
 const Home = ({ navigation }) => {
 
     const option = [
-        { label: 'Tin tức tuyển sinh', name: 'Home' },
-        { label: 'Đăng ký xét tuyển', name: 'Registration' },
-        { label: 'Tra cứu điểm chuẩn', name: 'Home' },
-        { label: 'Sau đại học', name: 'Home' },
-        { label: 'Hỏi đáp tuyển sinh', name: 'Home' },
-        { label: 'Tin tức về Đại Học Đà Nẵng', name: 'Home' },
-        { label: 'Các trường thành viên', name: 'Home' }
+        { label: 'Tin tức tuyển sinh', screen: 'Home', subScreen: 'News'  },
+        { label: 'Đăng ký xét tuyển', screen: 'Registration' },
+        { label: 'Tra cứu điểm chuẩn', screen: 'Home', subScreen: 'Lookup' },
+        { label: 'Sau đại học', screen: 'Registration' },
+        { label: 'Hỏi đáp tuyển sinh', screen: 'Registration',subScreen: 'FAQ' },
+        { label: 'Tin tức về Đại Học Đà Nẵng', screen: 'Registration' },
+        { label: 'Các trường thành viên', screen: 'Registration' }
     ]
 
     return (
@@ -42,7 +51,7 @@ const Home = ({ navigation }) => {
         {/* Assume this is carousel */}
         <Image source={image} style={homeStyle.fakeCarousel} />
         {option.map((item, index) => (
-            <MenuOption key={index} label={item.label} name={item.name} navigation={navigation}/>
+            <MenuOption key={index} label={item.label} screen={item.screen} subScreen={item.subScreen} navigation={navigation}/>
         ))}
         {/* <Button mode="contained">
             Go to new

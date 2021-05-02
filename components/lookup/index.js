@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { View, ScrollView, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Button, Divider } from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';  
 
 import CourseInfo from "./CourseInfo";
 import styles from './styles';
@@ -118,18 +119,26 @@ const Lookup = ({ navigation }) => {
 
 const LookupStack = createStackNavigator();
 
-const LookupScreen = () => {
+const LookupScreen = ({ navigation }) => {
     return (
-        <LookupStack.Navigator>
+        <LookupStack.Navigator
+            screenOptions={{
+                headerTitle: 'TRA CỨU ĐIỂM CHUẨN',
+                headerStyle: { elevation: 0, backgroundColor: '#054770' },
+                headerTitleStyle: { fontSize: 14 },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                cardStyle: { backgroundColor: '#fff' },
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.pop()} size={24} color="white" style={{padding: 15}}/> )
+            }}
+        >
             <LookupStack.Screen 
                 name="Lookup"
                 component={Lookup}
-                options={{headerShown: false}}
             />
             <LookupStack.Screen
                 name="CourseInfo"
                 component={CourseInfo}
-                options={{headerShown: false}}
             />
         </LookupStack.Navigator>
     )

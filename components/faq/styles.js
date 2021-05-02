@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         bottom: 15,
         right: 15,
         backgroundColor: '#fff',   
-        borderRadius: 100                                                       
+        borderRadius: 100                                       
     },
 
     // MakeQuestion

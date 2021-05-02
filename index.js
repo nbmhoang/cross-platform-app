@@ -9,28 +9,29 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { name as appName } from './app.json';
 import Home from "./components";
-import News from "./components/news";
-import Setting from "./components/setting";
+import NewsScreen from "./components/news";
+import SettingScreen from "./components/setting";
 import LookupScreen from "./components/lookup";
 import FAQScreen from "./components/faq";
-import Notification from "./components/notification";
+import NotificationScreen from "./components/notification";
 import Registration from "@components/registration";
 
 
 const HomeStackScreen = () => {
 
-  const Tab = createBottomTabNavigator();;
+  const Tab = createBottomTabNavigator();
 
   return (
       <Tab.Navigator
-      tabBarOptions={{
-        style: {
-          backgroundColor: '#fff'
-        }
-      }}>
+        tabBarOptions={{
+          style: {
+            backgroundColor: '#fff'
+          }
+        }}
+      >
           <Tab.Screen
             name="News"
-            component={News}
+            component={NewsScreen}
             options={{
               tabBarLabel: 'Trang chính',
               tabBarIcon: ({ color, size}) => (
@@ -38,7 +39,7 @@ const HomeStackScreen = () => {
               )
             }} />
           <Tab.Screen
-            name="LookupScreen"
+            name="Lookup"
             component={LookupScreen}
             options={{
               tabBarLabel: 'Tra cứu',
@@ -47,7 +48,7 @@ const HomeStackScreen = () => {
               )
             }} />
           <Tab.Screen
-            name="FAQScreen"
+            name="FAQ"
             component={FAQScreen}
             options={{
               tabBarLabel: 'Hỏi đáp TS',
@@ -57,7 +58,7 @@ const HomeStackScreen = () => {
             }} />
           <Tab.Screen
             name="Notification"
-            component={Notification}
+            component={NotificationScreen}
             options={{
               tabBarLabel: 'Thông báo',
               tabBarIcon: ({ color, size}) => (
@@ -66,7 +67,7 @@ const HomeStackScreen = () => {
             }} />
           <Tab.Screen
             name="Setting"
-            component={Setting}
+            component={SettingScreen}
             options={{
               tabBarLabel: 'Cài đặt',
               tabBarIcon: ({ color, size}) => (
@@ -125,7 +126,7 @@ export default function Main() {
           cardStyle: { backgroundColor: '#fff' }
         }}>
             <Stack.Screen options={{headerShown: false}} name="Index" component={Home} />
-            <Stack.Screen name="Home" component={HomeStackScreen} />
+            <Stack.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}} />
             <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
         </Stack.Navigator>
         </PaperProvider>

@@ -2,10 +2,9 @@ import React from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import { Divider } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import NewDetail from './NewDetail'
-
-import newsImage from '@assets/images/news/news1.png'
 
 const NewsItem = ({ image, title, time, onPress }) => {
     return (
@@ -43,22 +42,30 @@ const NewsIndex = ({ navigation }) => {
 
 const NewsStack = createStackNavigator();
 
-const News = () => {
+const NewsScreen = ({ navigation }) => {
     return (
-        <NewsStack.Navigator>
+        <NewsStack.Navigator
+            screenOptions={{
+                headerTitle: 'TIN TỨC',
+                headerStyle: { elevation: 0, backgroundColor: '#054770' },
+                headerTitleStyle: { fontSize: 14 },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                cardStyle: { backgroundColor: '#fff' },
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.pop()} size={24} color="white" style={{padding: 15}}/> )
+            }}
+        >
             <NewsStack.Screen
                 name="NewsIndex"
                 component={NewsIndex}
-                options={{headerShown: false}}
             />
             <NewsStack.Screen
                 name="NewDetail"
                 component={NewDetail}
-                options={{headerShown: false}}
             />
         </NewsStack.Navigator>
     )
 
 }
 
-export default News;
+export default NewsScreen;

@@ -17,7 +17,7 @@ import AnotherProjects from "./AnotherProjects";
 const MenuOption = ({ text, color, name }) => {
     const navigation = useNavigation(); 
     return (
-        <Pressable onPress={() => navigation.navigate(name)}>
+        <Pressable onPress={() => navigation.push(name)}>
             <View style={[styles.menuOption, {backgroundColor: color}]}>
                 <MaterialCommunityIcons name="file-document-edit" size={20} style={styles.menuIcon} />
                 <Text style={styles.menuText}>{text}</Text>
@@ -57,7 +57,7 @@ const Registration = ({ navigation }) => {
                 headerTintColor: '#fff',
                 headerTitleAlign: 'center',
                 cardStyle: { backgroundColor: '#fff' },
-                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.goBack(null)} size={24} color="white" style={{padding: 15}}/> )
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.pop()} size={24} color="white" style={{padding: 15}}/> )
             }}
         >
             <RegistrationStack.Screen

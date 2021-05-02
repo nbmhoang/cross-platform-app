@@ -49,14 +49,23 @@ const FAQ = ({ navigation }) => {
 
 const FAQStack = createStackNavigator();
 
-const FAQScreen = () => {
+const FAQScreen = ({ navigation }) => {
 
     return (
-        <FAQStack.Navigator>
+        <FAQStack.Navigator
+            screenOptions={{
+                headerStyle: { elevation: 0, backgroundColor: '#054770' },
+                headerTitleStyle: { fontSize: 14 },
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                cardStyle: { backgroundColor: '#fff' },
+                headerLeft: () => ( <MaterialCommunityIcons name="chevron-left" onPress={() => navigation.pop()} size={24} color="white" style={{padding: 15}}/> )
+            }}
+        >
             <FAQStack.Screen
                 name="FAQ"
                 component={FAQ}
-                options={{headerShown: false}}
+                options={{ title: 'HỎI ĐÁP THÔNG TIN TUYỂN SINH'}}
             />
             <FAQStack.Screen
                 name="MakeQuestion"
