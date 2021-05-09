@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
         { label: 'Đăng ký xét tuyển', screen: 'Registration' },
         { label: 'Tra cứu điểm chuẩn', screen: 'Home', subScreen: 'Lookup' },
         { label: 'Sau đại học', screen: 'AfterUniversity' },
-        { label: 'Hỏi đáp tuyển sinh', screen: 'Home',subScreen: 'FAQ' },
+        { label: 'Hỏi đáp tuyển sinh', screen: 'Home', subScreen: 'FAQ' },
         { label: 'Tin tức về Đại Học Đà Nẵng', screen: 'Registration' },
         { label: 'Các trường thành viên', screen: 'University' }
     ]

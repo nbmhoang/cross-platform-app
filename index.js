@@ -18,6 +18,8 @@ import Registration from "@components/registration";
 import AfterUniversity from './components/after-university';
 import University from './components/university';
 
+import Account from './components/account';
+
 
 const HomeStackScreen = () => {
 

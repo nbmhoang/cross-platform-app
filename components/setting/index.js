@@ -4,36 +4,38 @@ import { Avatar, Button, Divider, Switch } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import settingStyle from "./style";
+import styles from "./styles";
+import ErrorReport from './ErrorReport';
 
-const Setting = () => {
+const Setting = ({ navigation }) => {
     return (
-        <View style={settingStyle.settingContainer}>
-            <View style={settingStyle.menuContainer}>
+        <View style={styles.settingContainer}>
+            <View style={styles.menuContainer}>
                 <Avatar.Text size={50} label="AD" />
                 <Text style={{flex: 1, marginLeft: 20}}>Nguyễn Văn A</Text>
                 <Button mode="contained">ĐĂNG XUẤT</Button>
             </View>
-            <View style={settingStyle.menuContainer}>
-                <Text style={settingStyle.menuItemText}>Nhận thông báo</Text>
+            <View style={styles.menuContainer}>
+                <Text style={styles.menuItemText}>Nhận thông báo</Text>
                 <Switch value={true} />
             </View>
             <Divider />
-            <View style={settingStyle.menuContainer}>
-                <Text style={settingStyle.menuItemText}>Giao diện nền tối</Text>
+            <View style={styles.menuContainer}>
+                <Text style={styles.menuItemText}>Giao diện nền tối</Text>
                 <Switch value={false} />
             </View>
             <Divider />
-            <View style={settingStyle.menuContainer}>
-                <Text style={settingStyle.menuItemText}>Ngôn ngữ</Text>
+            <View style={styles.menuContainer}>
+                <Text style={styles.menuItemText}>Ngôn ngữ</Text>
             </View>
             <Divider />
-            <View style={settingStyle.menuContainer}>
-                <Text style={settingStyle.menuItemText}>Thống kê truy cập</Text>
+            <View style={styles.menuContainer}>
+                <Text style={styles.menuItemText}>Thống kê truy cập</Text>
             </View>
             <Divider />
-            <View style={settingStyle.menuContainer}>
-                <Text style={settingStyle.menuItemText}>Báo cáo lỗi</Text>
+            <View style={styles.menuContainer}>
+                <Text style={styles.menuItemText}>Báo cáo lỗi</Text>
+                <Button onPress={() => navigation.navigate('ErrorReport')} mode='contained'>BÁO LỖI</Button>
             </View>
         </View>
     )
@@ -57,6 +59,11 @@ const SettingScreen = ({ navigation }) => {
                 name="Setting"
                 component={Setting}
                 options={{ title: 'CÀI ĐẶT ỨNG DỤNG' }}
+            />
+            <SettingStack.Screen
+                name="ErrorReport"
+                component={ErrorReport}
+                options={{ title: 'BÁO LỖI' }}
             />
         </SettingStack.Navigator>
     )

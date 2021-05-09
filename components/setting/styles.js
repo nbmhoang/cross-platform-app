@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
-const settingStyle = StyleSheet.create({
+const styles = StyleSheet.create({
+    container: {
+        padding: 10
+    },
     settingContainer: {
         marginLeft: 10,
         marginRight: 10
@@ -18,7 +21,15 @@ const settingStyle = StyleSheet.create({
     },
     menuItemText: {
         fontWeight: 'bold'
+    },
+    input: {
+        backgroundColor: '#fff',
+        marginBottom: 5
+    },
+    input2: {
+        backgroundColor: '#fff',
+        marginBottom: 20,
     }
 })
 
-export default settingStyle;
+export default styles;

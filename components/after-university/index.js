@@ -25,8 +25,8 @@ const Index = () => {
 
     return (
         <View style={styles.container}>
-            {option.map((item) => (
-                <MenuOption text={item.text} />
+            {option.map((item, index) => (
+                <MenuOption key={index} text={item.text} />
             ))}    
         </View>
     )
