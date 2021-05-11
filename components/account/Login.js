@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
             <Button style={styles.redButton} mode='contained'>ĐĂNG NHẬP VỚI GOOGLE</Button>
             <View style={styles.text}>
                 <Text style={{fontWeight: 'bold'}}>Không có tài khoản? </Text>
-                <Pressable onPress={() => navigation.push('ChangePassword')}><Text style={styles.register}>Đăng ký</Text></Pressable> 
+                <Pressable onPress={() => navigation.push('Register')}><Text style={styles.register}>Đăng ký</Text></Pressable> 
                 <Text  style={{fontWeight: 'bold'}}> ngay</Text>
             </View>
         </View>

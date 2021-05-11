@@ -6,6 +6,8 @@ import Login from './Login';
 import ForgotPassword from './ForgotPassword';
 import Register from './Register';
 import ChangePassword from './ChangePassword';
+import Profile from './Profile';
+import EditProfile from './EditProfile';
 
 const AccountStack = createStackNavigator();
 
@@ -40,6 +42,16 @@ const Account = ({ navigation }) => {
                 name="ChangePassword"
                 component={ChangePassword}
                 options={{ title: 'ĐỔI MẬT KHẨU' }}
+            />
+            <AccountStack.Screen
+                name="Profile"
+                component={Profile}
+                options={{ title: 'HỒ SƠ CÁ NHÂN' }}
+            />
+            <AccountStack.Screen
+                name="EditProfile"
+                component={EditProfile}
+                options={{ title: 'CHỈNH SỬA THÔNG TIN' }}
             />
         </AccountStack.Navigator>
     )

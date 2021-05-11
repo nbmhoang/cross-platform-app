@@ -7,13 +7,17 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import styles from "./styles";
 import ErrorReport from './ErrorReport';
 
-const Setting = ({ navigation }) => {
+const Setting = ({ navigation, account }) => {
     return (
         <View style={styles.settingContainer}>
-            <View style={styles.menuContainer}>
+            {/* <View style={[styles.menuContainer, {display: 'none'}]}>
                 <Avatar.Text size={50} label="AD" />
                 <Text style={{flex: 1, marginLeft: 20}}>Nguyễn Văn A</Text>
                 <Button mode="contained">ĐĂNG XUẤT</Button>
+            </View> */}
+            <View style={styles.menuContainer}>
+                <Button style={{width: '45%'}} mode='contained' onPress={() => navigation.navigate('Account', {screen: 'Login'})}>ĐĂNG NHẬP</Button>
+                <Button style={{width: '45%'}} mode='contained' onPress={() => navigation.navigate('Account', {screen: 'Register'})}>ĐĂNG KÝ</Button>
             </View>
             <View style={styles.menuContainer}>
                 <Text style={styles.menuItemText}>Nhận thông báo</Text>

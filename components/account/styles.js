@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center'
     },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     logo: {
         width: 100,
         height: 100,
@@ -68,7 +72,41 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10
-    }
+    },
+
+    // Profile
+    profileContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 20
+    },
+    profileContainer2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+    },
+    avatarContainer: {
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20
+    },
+    text4: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: 0.4,
+        marginBottom: 20
+    },
+    labelButton: {
+        fontSize: 12,
+        marginLeft: 5,
+        marginRight: 5
+    },
+    input2: {
+        backgroundColor: '#fff',
+        marginBottom: 15
+    },
+
 })
 
 export default styles;

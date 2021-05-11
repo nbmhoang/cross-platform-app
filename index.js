@@ -17,7 +17,6 @@ import NotificationScreen from "./components/notification";
 import Registration from "@components/registration";
 import AfterUniversity from './components/after-university';
 import University from './components/university';
-
 import Account from './components/account';
 
 
@@ -134,6 +133,7 @@ export default function Main() {
             <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
             <Stack.Screen name="AfterUniversity" component={AfterUniversity} options={{headerShown: false}} />
             <Stack.Screen name="University" component={University} options={{headerShown: false}} />
+            <Stack.Screen name="Account" component={Account} options={{headerShown: false}} />
         </Stack.Navigator>
         </PaperProvider>
     </NavigationContainer>
