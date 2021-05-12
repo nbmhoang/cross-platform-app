@@ -83,12 +83,12 @@ const Registration = ({ navigation }) => {
             <RegistrationStack.Screen
                 name="AssessmentExam"
                 component={AssessmentExam}
-                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO KÌ THI ĐGNL' }}
+                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO KÌ THI ĐGNL', headerTitleAlign: 'left' }}
             />
             <RegistrationStack.Screen
                 name="AnotherProjects"
                 component={AnotherProjects}
-                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO ĐỀ ÁN RIÊNG' }}
+                options={{ title:'ĐĂNG KÝ XÉT TUYỂN THEO ĐỀ ÁN RIÊNG', headerTitleAlign: 'left' }}
             />
         </RegistrationStack.Navigator>
     )
