@@ -65,7 +65,7 @@ const AssessmentExam = () => {
                 <Button style={styles.button1} mode='outlined'>CHỌN ẢNH</Button>
             </View>
             <View style={styles.buttonRow2}>
-                <Button style={styles.button} mode='contained'>Xem lại</Button>
+                <Button style={styles.button2} mode='contained'>Xem lại</Button>
                 <Button style={styles.button} mode='contained'>Đăng ký</Button>
             </View>
         </ScrollView>

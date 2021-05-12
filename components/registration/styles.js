@@ -106,6 +106,11 @@ const styles = StyleSheet.create({
         flex: 0.49,
         marginBottom: 10
     },
+    button2: {
+        flex: 0.49,
+        marginBottom: 10,
+        backgroundColor: '#8CB762'
+    },
     buttonRow: {
         flexDirection: 'row-reverse',
         marginTop: 10,

@@ -180,7 +180,7 @@ const SchoolReportRegistration = () => {
                 <Button style={styles.button1} mode='outlined'>CHỌN ẢNH</Button>
             </View>
             <View style={styles.buttonRow2}>
-                <Button style={styles.button} mode='contained' onPress={() => setModalVisible(true)}>Xem lại</Button>
+                <Button style={styles.button2} mode='contained' onPress={() => setModalVisible(true)}>Xem lại</Button>
                 <Button style={styles.button} mode='contained'>Đăng ký</Button>
             </View>
         </ScrollView>

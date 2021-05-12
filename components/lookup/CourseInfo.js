@@ -26,8 +26,10 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
                         title="I. THÔNG TIN"
                         style={styles.list}
                         titleStyle={styles.listTitle}
+                        right={(props) => <List.Icon {...props} icon="equal" />}
                         expanded={expanded}
                         onPress={handlePress}
+                        
                     >
                         <View style={styles.content}>
                             <Text style={styles.text}>Mã trường: {schoolCode}</Text>
@@ -40,7 +42,7 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
                         style={styles.list}
                         titleStyle={styles.listTitle}
                     >
-
+                        <List.Item right={(props) => <List.Icon {...props} icon="equal" />} title="First item" />
                     </List.Accordion>
                     <List.Accordion
                         title="III. GIỚI THIỆU"

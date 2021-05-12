@@ -13,7 +13,7 @@ const MenuOption = ({ label, screen, subScreen, navigation }) => {
             style={homeStyle.menuOption} 
             onPress={() => { 
                 if(screen=='Home') { 
-                    navigation.navigate('Home', {screen: subScreen})
+                    navigation.push('Home', {screen: subScreen})
                 } 
                 else { 
                     navigation.push(screen)
