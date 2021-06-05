@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView, TextInput, Image, Text, TouchableOpacity  } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Button, Divider } from 'react-native-paper';
 
+
+import firebase from "@config";
 import styles from './styles';
 
 const Course = ({ logoImage, courseName, schoolName, benchmark, onPress }) => {
@@ -25,7 +27,11 @@ const Course = ({ logoImage, courseName, schoolName, benchmark, onPress }) => {
 
 const BenchmarkLookup = ({ navigation }) => {
 
-    const [selectedSchool, setSelectedSchool] = React.useState();
+    const db = firebase.database();
+    const ref = db.ref(`/university`);
+
+    const [term, setTerm] = useState('')
+    const [selectedSchool, setSelectedSchool] = React.useState('');
 
     const courseData = [
         {
@@ -74,9 +80,56 @@ const BenchmarkLookup = ({ navigation }) => {
         }
     ]
 
+    const universityData = [
+        { universityName: 'Trường Đại học Bách Khoa', code: 'dut' },
+        { universityName: 'Trường Đại học Kinh tế', code: 'due' },
+        { universityName: 'Trường Đại học Sư phạm', code: 'ued' },
+        { universityName: 'Trường Đại học Sư phạm Kỹ thuật', code: 'ute' },
+        { universityName: 'Trường Đại học Ngoại Ngữ', code: 'ufl' },
+        { universityName: 'Trường Đại học CNTT và Truyền thông Việt - Hàn', code: 'vku' },
+        { universityName: 'Phân hiệu Đại học Đà Nẵng tại Kon Tum', code: 'udck' },
+        { universityName: 'Khoa Y Dược', code: 'smp' },
+        { universityName: 'Viện nghiên cứu và đào tạo Việt - Anh', code: 'vnuk' }
+    ]
+
+    const searchBenchmark = () => {
+        if (selectedSchool) {
+            ref.child(selectedSchool).get().then(snapshot => {
+                snapshot.forEach(uni => {
+                    console.log(uni.val());
+                })
+            })
+        } else {
+            console.log(term);
+            ref.get().then(snapshot => {
+                const list = []
+                // get 
+                snapshot.forEach(unv => {
+                    // console.log(uvi.hasChild('major'));
+                    // console.log(uvi.child('major'));
+                    // uvi.child('major').getRef().get().then(majors => {
+                    //     majors.forEach(major => {
+                    //         const currentMajor = major.val();
+                    //         if (currentMajor.name.includes((term))) {
+                    //             console.log(currentMajor);
+                    //         }
+                    //     })
+                    // })
+                    const currentUniversity = unv.child('major');
+                    const curRef = currentUniversity.getRef()
+                    // Not working utf-8
+                    curRef.orderByChild('name').equalTo(term).on('value', c => {
+                        console.log(c.val());
+                    })
+                })
+            })
+        }
+        
+    }
+
     return (
         <ScrollView style={styles.container}>
-            <TextInput style={styles.input} placeholder="Ngành học" />
+            <TextInput style={styles.input} placeholder="Ngành học" value={term} onChangeText={text => setTerm(text)} />
             <View style={styles.pickerView}>
                 <Picker
                     selectedValue={selectedSchool}
@@ -85,12 +138,16 @@ const BenchmarkLookup = ({ navigation }) => {
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedSchool(itemValue)
                     }>
-                    <Picker.Item label="Trường" value="0" />
+                    {/* <Picker.Item label="Trường" value="0" />
                     <Picker.Item label="Đại học Bách Khoa" value="BK" />
-                    <Picker.Item label="Đại học CNTT&TT Việt Hàn" value="VH" />
+                    <Picker.Item label="Đại học CNTT&TT Việt Hàn" value="VH" /> */}
+                    <Picker.Item label="Chọn trường..." value='' />
+                    {universityData.map((item, index) => (
+                        <Picker.Item key={index} label={item.universityName} value={item.code} />
+                    ))}
                 </Picker>
             </View>
-            <Button mode="contained">TÌM KIẾM</Button>
+            <Button mode="contained" onPress={() => searchBenchmark()}>TÌM KIẾM</Button>
             {courseData.map((item) => (
                 <Course 
                     key={item.key} 

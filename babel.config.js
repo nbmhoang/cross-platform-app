@@ -16,7 +16,7 @@ module.exports = function(api) {
             "@components": "./components",
             // Use later
             "@reducers": "./reducers",
-            "@config": "./firebasecfg",
+            "@config": "./db",
             "@utils": "./src/utils",
             "@services": "./src/services",
             "@assets": "./assets",
