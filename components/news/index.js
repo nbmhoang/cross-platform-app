@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import { Divider } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
+import firebase from "@config";
 import styles from './styles';
 import NewDetail from './NewDetail'
 
 const NewsItem = ({ image, title, time, onPress }) => {
+
+    console.log(image);
+
     return (
         <TouchableOpacity onPress={onPress}>
-            <Image source={image} />
+            <Image source={{uri: image}} />
             <Text style={styles.title2}>{title}</Text>
             <Text style={styles.time}>{time}</Text>
         </TouchableOpacity>
@@ -17,11 +23,36 @@ const NewsItem = ({ image, title, time, onPress }) => {
 }
 
 const NewsIndex = ({ navigation }) => {
+
+    const [newList, setNewList] = useState([]);
+
+    const db = firebase.database();
+    const ref = db.ref(`/news`);
+
+    const getNew = () => {
+        ref.on('value', snapshot => {
+            const list = [];
+            snapshot.forEach(item => {
+                // console.log('new', item.val());
+                list.push({
+                    newId: item.key,
+                    ...item.val()
+                })
+            })
+            setNewList(list);
+        })
+    }
+
+
+    useEffect(() => {
+        getNew();
+    }, [])
+
     return (
         <ScrollView style={styles.container}>
             <View>
                 <Text style={styles.title1}>Tin tức nổi bật</Text>
-                <NewsItem 
+                {/* <NewsItem 
                     image={require('@assets/images/news/news1.png')}
                     title="Thông tin đăng ký xét tuyển vào các cơ sở đào tạo thành viên Đại học Đà Nẵng năm 2021" 
                     time="15 phút trước" 
@@ -30,7 +61,17 @@ const NewsIndex = ({ navigation }) => {
                         title: "Thông tin đăng ký xét tuyển vào các cơ sở đào tạo thành viên Đại học Đà Nẵng năm 2021",
                         time: "15 phút trước"
                     })}
-                />
+                /> */}
+                {newList && newList.map((item, index) => (
+                    <NewsItem
+                        key={index}
+                        image={item.cover}
+                        title={item.title}
+                        onPress={() => navigation.navigate('NewDetail', {
+                            newId: item.newId
+                        })}
+                    />
+                ))}
             </View>
             <Divider style={styles.divider} />
             <View>
