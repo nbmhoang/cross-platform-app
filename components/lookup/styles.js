@@ -104,7 +104,42 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         paddingBottom: 10
-    }
+    },
+
+    //EnrollmentResult
+    enrollContainer: {
+        marginTop: 20
+    },
+    enrollTitle: {
+        alignSelf: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        marginBottom: 10
+    },
+    text2: {
+        fontSize: 16,
+        marginBottom: 5
+    },
+    subjectsTable: {
+        marginBottom: 20
+    },
+    resultTextPassed: {
+        padding: 5,
+        fontSize: 24,
+        textTransform: 'uppercase',
+        color: "#3de334",
+        fontWeight: 'bold',
+        alignSelf: 'center'
+    },
+    resultTextFailed: {
+        padding: 5,
+        fontSize: 24,
+        textTransform: 'uppercase',
+        color: "#db3737",
+        fontWeight: 'bold',
+        alignSelf: 'center'
+    },
 })
 
 export default styles;
