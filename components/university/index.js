@@ -2,13 +2,13 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Divider } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
+import firebase from "@config";
 
-import logo from '@assets/images/udn_square.png'
 import styles from "./styles";
 import UniversityDetail from "./UniversityDetail";
 
-const UniversityItem = ({ name, address, phoneNumber, website, onPress }) => {
+const UniversityItem = ({ logo, name, address, phoneNumber, website, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
             <Image source={logo} style={styles.logo} />
@@ -32,6 +32,33 @@ const UniversityItem = ({ name, address, phoneNumber, website, onPress }) => {
 }
 
 const Index = ({ navigation }) => {
+
+    const db = firebase.database();
+    const ref = db.ref(`/university`);
+
+    const [loading, setLoading] = React.useState(false);
+    const [schools, setSchools] = React.useState([]);
+
+    const getData = () => {
+        setLoading(true);
+        ref.get().then(snapshot => {
+            const list = [];
+            snapshot.forEach(school => {
+                list.push({
+                    ...school.val()
+                })
+            })
+            setSchools(list);
+            setLoading(false);
+        }).catch(error => {
+            console.log('An error occur when fetching school', error);
+            setLoading(false);
+        });
+    }
+
+    React.useEffect(() => {
+        getData();
+    }, [])
 
     const listUniversity = [
         {
@@ -74,22 +101,24 @@ const Index = ({ navigation }) => {
 
     return (
         <ScrollView>
-            {listUniversity.map((item, index) => (
+            {!loading ? schools && schools.map((item, index) => (
                 <UniversityItem 
-                    key={index} 
-                    name={item.name} 
-                    address={item.address} 
-                    phoneNumber={item.phoneNumber} 
-                    website={item.website}
-                    onPress={() => navigation.navigate('UniversityDetail', {
-                        key: index,
-                        name: item.name,
-                        address: item.address,
-                        phoneNumber: item.phoneNumber,
-                        website: item.website
-                    })}
-                />
-            ))}
+                key={index}
+                logo={item.logo}
+                name={item.name} 
+                address={item.address} 
+                phoneNumber={item['phone-number']} 
+                website={item.website}
+                onPress={() => navigation.navigate('UniversityDetail', {
+                    key: index,
+                    logo: item.logo,
+                    name: item.name,
+                    address: item.address,
+                    phoneNumber: item['phone-number'],
+                    website: item.website
+                })}
+            />
+            )): <View style={{display: 'flex', height: 500, justifyContent: 'center'}}><ActivityIndicator animating={true} size={50} /></View>}
         </ScrollView>
     )
 }
