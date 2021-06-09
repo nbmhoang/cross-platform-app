@@ -3,7 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 const deviceWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
     container: {     
-        padding: 10
+        padding: 10,
+        paddingBottom: 32
     },
     title1: {
         fontSize: 20,
@@ -12,10 +13,10 @@ const styles = StyleSheet.create({
     },
     title2: {
         fontSize: 18,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         textAlign: 'justify',
         lineHeight: 25,
-        marginTop: 5,
+        marginTop: 10,
         marginBottom: 10
     },
     time: {
@@ -78,6 +79,18 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         paddingTop: 10,
         fontWeight: 'bold'
+    },
+    newSeperator: {
+        marginTop: 9,
+        marginBottom: 15
+    },
+    newCover: {
+        width: '100%',
+        height: 200,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#C5C5C5',
+        resizeMode: 'center'
     }
 })
 

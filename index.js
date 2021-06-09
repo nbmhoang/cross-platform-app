@@ -6,6 +6,7 @@ import { DefaultTheme as NativeTheme, NavigationContainer } from '@react-navigat
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import momentjs from "moment";
 
 import { name as appName } from './app.json';
 import Home from "./components";
@@ -19,6 +20,27 @@ import AfterUniversity from './components/after-university';
 import University from './components/university';
 import Account from './components/account';
 
+
+momentjs.locale('en', {
+  relativeTime: {
+    future: "in %s",
+    past: "%s trước",
+    s  : 'vài giây trước',
+    ss : '%d giây',
+    m:  "1 phút",
+    mm: "%d phút",
+    h:  "1 giờ",
+    hh: "%d giờ",
+    d:  "1 ngày",
+    dd: "%d ngày",
+    w:  "1 tuần",
+    ww: "%d tuần",
+    M:  "1 tháng",
+    MM: "%d tháng",
+    y:  "a năm",
+    yy: "%d năm"
+  }
+})
 
 const HomeStackScreen = () => {
 
@@ -92,8 +114,7 @@ export default function Main() {
     },
     android: {
       regular: {
-        fontFamily: 'Roboto',
-        fontWeight: 'normal'
+        fontFamily: 'Roboto'
       }
     }
   }

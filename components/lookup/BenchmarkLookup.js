@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, ScrollView, TextInput, Image, Text, TouchableOpacity  } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView, TextInput, Image, Text, TouchableOpacity, ActivityIndicator  } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Button, Divider } from 'react-native-paper';
 
@@ -11,12 +11,12 @@ const Course = ({ logoImage, courseName, schoolName, benchmark, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.courseContainer}>
-                <Image source={logoImage} style={styles.logo} />
-                <View>
+                <Image source={{ uri: logoImage }} style={styles.logo} />
+                <View style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
                     <Text style={styles.boldText}>{courseName}</Text>
                     <Text style={styles.text}>{schoolName}</Text>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.text}>Điểm chuẩn 2020: </Text><Text style={styles.boldText}>{benchmark}</Text>
+                        {benchmark && <><Text style={styles.text}>Điểm chuẩn 2020: </Text><Text style={styles.boldText}>{benchmark}</Text></>}
                     </View>
                 </View>
             </View>
@@ -31,7 +31,12 @@ const BenchmarkLookup = ({ navigation }) => {
     const ref = db.ref(`/university`);
 
     const [term, setTerm] = useState('')
+    const [loading, setLoading] = useState(false);
     const [selectedSchool, setSelectedSchool] = React.useState('');
+
+    useEffect(() => {
+        searchBenchmark();
+    }, [])
 
     const courseData = [
         {
@@ -92,39 +97,77 @@ const BenchmarkLookup = ({ navigation }) => {
         { universityName: 'Viện nghiên cứu và đào tạo Việt - Anh', code: 'vnuk' }
     ]
 
+    const [data, setData] = useState([]);
+
     const searchBenchmark = () => {
+        setLoading(true);
         if (selectedSchool) {
+            // Get all
             ref.child(selectedSchool).get().then(snapshot => {
-                snapshot.forEach(uni => {
-                    console.log(uni.val());
-                })
+                if (term === '') {
+                    const data = snapshot.val();
+                    const list = [];
+                    for(const [majorId, majorInfo] of Object.entries(data.major)) {
+                        list.push({
+                            logoImage: data.logo,
+                            courseName: majorInfo.name,
+                            schoolName: data.name,
+                            benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0]
+                        })
+                    }
+                    setData(list);
+                } else {
+                    // .major.MAJOR_ID.name == term
+                    const data = snapshot.val();
+                    const list = [];
+                    for(const [majorId, majorInfo] of Object.entries(data.major)) {
+                        if (majorInfo.name.toLowerCase().includes(term)) {
+                            list.push({
+                                logoImage: data.logo,
+                                courseName: majorInfo.name,
+                                schoolName: data.name,
+                                benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0],
+                                // banner: require('../../assets/images/school-banner/vku.jpg'),
+                                schoolCode: data['university-code'],
+                                courseCode: majorId,
+                                // yearStart: "2017"
+                            })
+                        }
+                        
+                    }
+                    setData(list);
+                }
             })
         } else {
-            console.log(term);
             ref.get().then(snapshot => {
                 const list = []
-                // get 
                 snapshot.forEach(unv => {
-                    // console.log(uvi.hasChild('major'));
-                    // console.log(uvi.child('major'));
-                    // uvi.child('major').getRef().get().then(majors => {
-                    //     majors.forEach(major => {
-                    //         const currentMajor = major.val();
-                    //         if (currentMajor.name.includes((term))) {
-                    //             console.log(currentMajor);
-                    //         }
-                    //     })
-                    // })
+                    const universityData = unv.val();
                     const currentUniversity = unv.child('major');
                     const curRef = currentUniversity.getRef()
                     // Not working utf-8
-                    curRef.orderByChild('name').equalTo(term).on('value', c => {
-                        console.log(c.val());
+                    curRef.on('value', c => {
+                        const majorData = c.val();
+                        for(const [majorId, majorInfo] of Object.entries(majorData)) {
+                            if (majorInfo.name.toLowerCase().includes(term)) {
+                                list.push({
+                                    logoImage: universityData.logo,
+                                    courseName: majorInfo.name,
+                                    schoolName: universityData.name,
+                                    benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0],
+                                    // banner: require('../../assets/images/school-banner/vku.jpg'),
+                                    schoolCode: universityData['university-code'],
+                                    courseCode: majorId,
+                                    // yearStart: "2017"
+                                })
+                            }
+                        }
                     })
                 })
+                setData(list)
             })
         }
-        
+        setLoading(false);
     }
 
     return (
@@ -148,7 +191,7 @@ const BenchmarkLookup = ({ navigation }) => {
                 </Picker>
             </View>
             <Button mode="contained" onPress={() => searchBenchmark()}>TÌM KIẾM</Button>
-            {courseData.map((item) => (
+            {/* {courseData.map((item) => (
                 <Course 
                     key={item.key} 
                     logoImage={item.logoImage} 
@@ -166,7 +209,19 @@ const BenchmarkLookup = ({ navigation }) => {
                         yearStart: item.yearStart
                     })}
                 />
-            ))}
+            ))} */}
+            {!loading ? data && data.map((item, index) => (
+                <Course 
+                key={index} 
+                logoImage={item.logoImage} 
+                courseName={item.courseName} 
+                schoolName={item.schoolName} 
+                benchmark={item.benchmark}
+                onPress={() => navigation.navigate('CourseInfo', {
+                    
+                })}
+            />
+            )) : <ActivityIndicator animating={true} size={50} />}
         </ScrollView>
     )
 }

@@ -3,21 +3,19 @@ import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import { Divider } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import momentjs from "moment";
 
 import firebase from "@config";
 import styles from './styles';
 import NewDetail from './NewDetail'
 
-const NewsItem = ({ image, title, time, onPress }) => {
-
-    console.log(image);
+const NewsItem = ({ image, title, postedAt, onPress }) => {
 
     return (
         <TouchableOpacity onPress={onPress}>
-            <Image source={{uri: image}} />
+            <Image style={styles.newCover} source={{uri: image}}/>
             <Text style={styles.title2}>{title}</Text>
-            <Text style={styles.time}>{time}</Text>
+            <Text style={styles.time}>{momentjs(postedAt*1000).fromNow()}</Text>
         </TouchableOpacity>
     )
 }
@@ -30,11 +28,11 @@ const NewsIndex = ({ navigation }) => {
     const ref = db.ref(`/news`);
 
     const getNew = () => {
-        ref.on('value', snapshot => {
+        ref.orderByChild('postedAt').on('value', snapshot => {
             const list = [];
             snapshot.forEach(item => {
                 // console.log('new', item.val());
-                list.push({
+                list.unshift({
                     newId: item.key,
                     ...item.val()
                 })
@@ -51,7 +49,7 @@ const NewsIndex = ({ navigation }) => {
     return (
         <ScrollView style={styles.container}>
             <View>
-                <Text style={styles.title1}>Tin tức nổi bật</Text>
+                {/* <Text style={styles.title1}>Tin tức nổi bật</Text> */}
                 {/* <NewsItem 
                     image={require('@assets/images/news/news1.png')}
                     title="Thông tin đăng ký xét tuyển vào các cơ sở đào tạo thành viên Đại học Đà Nẵng năm 2021" 
@@ -63,20 +61,24 @@ const NewsIndex = ({ navigation }) => {
                     })}
                 /> */}
                 {newList && newList.map((item, index) => (
+                    <>
                     <NewsItem
                         key={index}
                         image={item.cover}
                         title={item.title}
+                        postedAt={item.postedAt}
                         onPress={() => navigation.navigate('NewDetail', {
                             newId: item.newId
                         })}
                     />
+                    {index < newList.length - 1 && <Divider style={styles.newSeperator} />}
+                    </>
                 ))}
             </View>
-            <Divider style={styles.divider} />
+            {/* <Divider style={styles.divider} />
             <View>
                 <Text style={styles.title1}>Kế hoạch thi, tuyển sinh</Text>
-            </View>
+            </View> */}
         </ScrollView>
     )
 }
