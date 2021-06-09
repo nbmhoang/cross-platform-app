@@ -2,9 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
-    container: {     
-        padding: 10,
-        paddingBottom: 32
+    container: {
+        padding: 10
     },
     title1: {
         fontSize: 20,
@@ -67,9 +66,12 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     relatedNewsItem: {
-        width: deviceWidth*0.45
+        width: deviceWidth*0.45,
+        marginRight: 15
     },
     relatedNewsImage: {
+        borderWidth: 1,
+        borderColor: '#000',
         width: deviceWidth*0.45,
         height: 91
     },

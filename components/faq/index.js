@@ -42,7 +42,7 @@ const FAQ = ({ navigation }) => {
             setQuestions(list);
             setLoading(false);
         }).catch(error => {
-            console.log('An error occur when fetching question', error);
+            // console.log('An error occur when fetching question', error);
             setLoading(false);
         });
         

@@ -116,6 +116,7 @@ const BenchmarkLookup = ({ navigation }) => {
                         })
                     }
                     setData(list);
+                    setLoading(false);
                 } else {
                     // .major.MAJOR_ID.name == term
                     const data = snapshot.val();
@@ -136,6 +137,7 @@ const BenchmarkLookup = ({ navigation }) => {
                         
                     }
                     setData(list);
+                    setLoading(false);
                 }
             })
         } else {
@@ -164,10 +166,11 @@ const BenchmarkLookup = ({ navigation }) => {
                         }
                     })
                 })
-                setData(list)
+                setData(list);
+                setLoading(false);
             })
         }
-        setLoading(false);
+        
     }
 
     return (
@@ -181,9 +184,6 @@ const BenchmarkLookup = ({ navigation }) => {
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedSchool(itemValue)
                     }>
-                    {/* <Picker.Item label="Trường" value="0" />
-                    <Picker.Item label="Đại học Bách Khoa" value="BK" />
-                    <Picker.Item label="Đại học CNTT&TT Việt Hàn" value="VH" /> */}
                     <Picker.Item label="Chọn trường..." value='' />
                     {universityData.map((item, index) => (
                         <Picker.Item key={index} label={item.universityName} value={item.code} />
@@ -191,25 +191,6 @@ const BenchmarkLookup = ({ navigation }) => {
                 </Picker>
             </View>
             <Button mode="contained" onPress={() => searchBenchmark()}>TÌM KIẾM</Button>
-            {/* {courseData.map((item) => (
-                <Course 
-                    key={item.key} 
-                    logoImage={item.logoImage} 
-                    courseName={item.courseName} 
-                    schoolName={item.schoolName} 
-                    benchmark={item.benchmark}
-                    onPress={() => navigation.navigate('CourseInfo', {
-                        key: item.key,
-                        logoImage: item.logoImage,
-                        courseName: item.courseName,
-                        schoolName: item.schoolNamem,
-                        banner: item.banner,
-                        schoolCode: item.schoolCode,
-                        courseCode: item.courseCode,
-                        yearStart: item.yearStart
-                    })}
-                />
-            ))} */}
             {!loading ? data && data.map((item, index) => (
                 <Course 
                 key={index} 

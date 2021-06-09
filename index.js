@@ -121,6 +121,7 @@ export default function Main() {
 
   const theme = {
     ...DefaultTheme,
+    dark: true,
     roundness: 5,
     colors: {
       ...DefaultTheme.colors,

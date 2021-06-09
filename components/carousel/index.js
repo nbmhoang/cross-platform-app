@@ -23,7 +23,6 @@ const Carousel = () => {
   let imageArray = []
   let barArray = []
   images.forEach((image, i) => {
-    console.log(image, i)
     const thisImage = (
       <Image
         key={`image${i}`}

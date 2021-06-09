@@ -8,9 +8,6 @@ import styles from './styles';
 
 const Result = ({ name, birth, identityCard, sex, dtut, kvut, major, subject1, grades1, subject2, grades2, subject3, grades3, universityCode, result }) => {
 
-
-    console.log(name);
-
     return (
         <View style={styles.enrollContainer}>
             <Text style={styles.enrollTitle}>Kết quả tìm kiếm</Text>
@@ -65,7 +62,7 @@ const EnrollmentResultLookup = () => {
             setInfo(snapshot.val());
             setLoading(false);
         }).catch(error => {
-            console.log('Error', error);
+            // console.log('Error', error);
             setLoading(false);
         });
     }
