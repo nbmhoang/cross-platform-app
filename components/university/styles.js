@@ -22,14 +22,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text1: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 2
+        marginBottom: 2,
+        width: 270
     },
     text2: {
         fontSize: 10,
         fontStyle: 'italic',
-        marginLeft: 3
+        marginLeft: 3,
+        width: 260
     }
 })
 

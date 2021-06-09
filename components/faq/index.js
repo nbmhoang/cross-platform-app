@@ -56,11 +56,15 @@ const FAQ = ({ navigation }) => {
 
     return (
         <>
-            <ScrollView style={styles.container}>
-                {!loading ? questions && questions.map((item, index) => (
-                    <Question key={item.questionId} question={item.question} answer={item.answer} />
-                )) : <ActivityIndicator animating={true} size={50} />}
-            </ScrollView>
+            {!loading ? questions &&
+                <>
+                <ScrollView style={styles.container}>
+                    {questions.map((item, index) => (
+                        <Question key={item.questionId} question={item.question} answer={item.answer} />
+                    ))}
+                </ScrollView>
+                </> : <View style={{display: 'flex', height:'100%', justifyContent: 'center'}}><ActivityIndicator animating={true} size={50} /></View>}
+            
             <MaterialCommunityIcons name='plus-circle' style={styles.addQuestion} color='#054770' size={60} onPress={() => navigation.navigate('MakeQuestion')} />
         </>
     )
