@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     time: {
         fontSize: 12,
         fontStyle: 'italic',
-        color: '#606060'
+        color: '#606060',
+        marginBottom: 10
     },
     divider: {
         marginTop: 20,

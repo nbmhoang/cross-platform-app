@@ -11,7 +11,7 @@ import UniversityDetail from "./UniversityDetail";
 const UniversityItem = ({ logo, name, address, phoneNumber, website, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
-            <Image source={logo} style={styles.logo} />
+            <Image source={{uri: logo}} style={styles.logo} />
             <View>
                 <Text style={styles.text1}>{name}</Text>
                 <View style={styles.textRow}>
@@ -111,11 +111,7 @@ const Index = ({ navigation }) => {
                 website={item.website}
                 onPress={() => navigation.navigate('UniversityDetail', {
                     key: index,
-                    logo: item.logo,
-                    name: item.name,
-                    address: item.address,
-                    phoneNumber: item['phone-number'],
-                    website: item.website
+                    shortName: item.shortName
                 })}
             />
             )): <View style={{display: 'flex', height: 500, justifyContent: 'center'}}><ActivityIndicator animating={true} size={50} /></View>}

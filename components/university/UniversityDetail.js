@@ -1,41 +1,141 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text, Image, ScrollView, useWindowDimensions } from 'react-native';
+import { List } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
+import HTML from "react-native-render-html";
+import firebase from "@config";
 
-import logo from '@assets/images/udn_square.png'
 import styles from "./styles";
 
-const UniversityItem = ({ name, address, phoneNumber, website }) => {
+const Info = ({ logo, name, nameEn, code, type, trainingSystem, address, phone, email, website, fb, vision, mission, structure, info2021 }) => {
+
+    const [expanded, setExpanded] = React.useState(true);
+
+    const handlePress = () => setExpanded(!expanded);
+
+    const contentWidth = useWindowDimensions().width;
+
     return (
-        <View style={styles.itemContainer}>
-            <Image source={logo} style={styles.logo} />
-            <View>
-                <Text style={styles.text1}>{name}</Text>
-                <View style={styles.textRow}>
-                    <MaterialCommunityIcons name="home" size={10} />
-                    <Text style={styles.text2}>{address}</Text>
+        <ScrollView>
+            <Image source={require("@assets/images/school-banner/vku.jpg")} style={styles.banner} />
+            <View style={styles.container}>
+                <View style={styles.title}>
+                    <View style={{width: '80%'}}>
+                        <Text style={styles.schoolName}>{name}</Text>
+                        <Text style={styles.courseName}>{nameEn}</Text>
+                    </View>
+                    <Image source={{uri: logo}} style={styles.logo2} />
                 </View>
-                <View style={styles.textRow}>
-                    <MaterialCommunityIcons name="phone" size={10} />
-                    <Text style={styles.text2}>{phoneNumber}</Text>
-                </View>
-                <View style={styles.textRow}>
-                    <MaterialCommunityIcons name="phone" size={10} />
-                    <Text style={styles.text2}>{website}</Text>
-                </View>
+                <List.Section>
+                    <List.Accordion
+                        title="I. GIỚI THIỆU"
+                        style={styles.list}
+                        titleStyle={styles.listTitle}
+                        right={(props) => <List.Icon {...props} icon="equal" />}
+                        expanded={expanded}
+                        onPress={handlePress}
+                        
+                    >
+                        <View style={styles.content}>
+                            <Text style={styles.text}>Mã trường: {code}</Text>
+                            <Text style={styles.text}>Loại trường: {type}</Text>
+                            <Text style={styles.text}>Hệ đào tạo: {trainingSystem}</Text>
+                            <Text style={styles.text}>Địa chỉ: {address}</Text>
+                            <Text style={styles.text}>SĐT: {phone}</Text>
+                            <Text style={styles.text}>Email: {email}</Text>
+                            <Text style={styles.text}>Website: {website}</Text>
+                            <Text style={styles.text}>Facebook: {fb}</Text>
+                        </View>
+                    </List.Accordion>
+                    <List.Accordion
+                        title="II. SỨ MẠNG - TẦM NHÌN"
+                        style={styles.list}
+                        titleStyle={styles.listTitle}
+                    >
+                        {vision &&
+                        <HTML source={{ html: vision }} contentWidth={contentWidth} /> }
+                    </List.Accordion>
+                    <List.Accordion
+                        title="III. CHỨC NĂNG NHIỆM VỤ"
+                        style={styles.list} 
+                        titleStyle={styles.listTitle}
+                    >
+                        {mission &&
+                        <HTML source={{ html: mission }} contentWidth={contentWidth} /> }
+                    </List.Accordion>
+                    <List.Accordion
+                        title="IV. CƠ CẤU TỔ CHỨC"
+                        style={styles.list}
+                        titleStyle={styles.listTitle}
+                    >
+                        {structure &&
+                        <Image source={{uri: structure}} style={styles.structure} /> }
+                    </List.Accordion>
+                    <List.Accordion
+                        title="V. THÔNG TIN TUYỂN SINH NĂM 2021"
+                        style={styles.list}
+                        titleStyle={styles.listTitle}
+                    >
+                        {info2021 &&
+                        <HTML source={{ html: info2021 }} contentWidth={contentWidth} /> }
+                    </List.Accordion>
+                </List.Section>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const UniversityDetail = ({ route }) => {
 
-    const { name, address, phoneNumber, website } = route.params;
+    const { shortName } = route.params;
+
+    console.log(shortName);
+    const db = firebase.database();
+
+    const [loading, setLoading] = React.useState(false);
+    const [info, setInfo] = React.useState('');
+
+    const getData = () => {
+        setLoading(true);
+        const ref = db.ref(`/university/${shortName}`);
+
+        ref.get().then(snapshot => {
+            setInfo(snapshot.val());
+            setLoading(false);
+        }).catch(error => {
+            console.log('Error', error);
+            setLoading(false);
+        });
+    }
+
+    React.useEffect(() => {
+        getData();
+    }, [])
+
+    console.log(info);
 
     return (
-        <ScrollView>
-            <UniversityItem name={name} address={address} phoneNumber={phoneNumber} website={website} />
-        </ScrollView>
+        <>
+            {!loading ? info ?
+            <Info
+                logo={info.logo}
+                name={info.name}
+                nameEn={info['name-en']}
+                code={info['university-code']}
+                type={info['university-type']}
+                trainingSystem={info['training-system'][0]}
+                address={info.address}
+                phone={info['phone-number']}
+                email={info.email}
+                website={info.website}
+                fb={info.facebook}
+                vision={info.vision}
+                mission={info.mission}
+                structure={info.structure}
+                info2021={info.info2021}
+            /> : null
+            : <View style={{display: 'flex', height: 500, justifyContent: 'center'}}><ActivityIndicator animating={true} size={50} /></View> }
+        </>
     )
 }
 

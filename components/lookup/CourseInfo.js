@@ -12,7 +12,7 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
 
     return (
         <ScrollView>
-            <Image source={banner} style={styles.banner} />
+            <Image source={{uri :banner}} style={styles.banner} />
             <View style={styles.container}>
                 <View style={styles.title}>
                     <View>

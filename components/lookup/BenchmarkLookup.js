@@ -45,7 +45,7 @@ const BenchmarkLookup = ({ navigation }) => {
             courseName: "Công nghệ thông tin",
             schoolName: "Trường ĐH Kinh tế Đà Nẵng",
             benchmark: "21.5",
-            banner: require('../../assets/images/school-banner/due.png'),
+            banner: "https://due.udn.vn/Portals/0/Banner%20Truong/tvts_2021.jpg",
             schoolCode: "DDQ",
             courseCode: "7480201",
             yearStart: "2015"
