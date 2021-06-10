@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 200,
         borderWidth: 1,
-        borderStyle: 'solid',
         borderColor: '#C5C5C5',
         resizeMode: 'center'
     }

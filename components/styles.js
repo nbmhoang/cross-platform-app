@@ -41,7 +41,6 @@ const homeStyle = StyleSheet.create({
         backgroundColor: '#054770',
         borderColor: '#000',
         borderWidth: 1,
-        borderStyle: 'solid',
         height: 48,
         display: 'flex',
         justifyContent: 'center'

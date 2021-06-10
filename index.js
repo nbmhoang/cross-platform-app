@@ -21,7 +21,7 @@ import University from './components/university';
 import Account from './components/account';
 
 
-momentjs.locale('en', {
+momentjs.updateLocale('en', {
   relativeTime: {
     future: "in %s",
     past: "%s trước",

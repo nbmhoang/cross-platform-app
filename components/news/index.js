@@ -83,6 +83,7 @@ const NewsIndex = ({ navigation }) => {
                     </>
                 )) : Array.from({length: 5}).map((_,index) => (
                     <SkeletonContent
+                        key={index}
                         containerStyle={{flex: 1, width: '100%'}}
                         animationDirection="horizontalLeft"
                         isLoading={true}
