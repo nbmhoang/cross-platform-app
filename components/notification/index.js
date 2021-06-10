@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Notification = () => {
     return (
         <View>
-            <Text>Notification</Text>
+            <Text style={{color: '#999999', textAlign: 'center'}}>Không có thông báo nào</Text>
         </View>
     )
 }

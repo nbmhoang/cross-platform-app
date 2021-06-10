@@ -12,14 +12,19 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'justify',
+        lineHeight: 25
     },
     ansText: {
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'justify',
+        marginTop: 5,
+        marginBottom: 5
     },
     answer: {
         fontSize: 16,
-        textAlign: 'justify'
+        textAlign: 'justify',
+        lineHeight: 20
     },
     addQuestion: {
         position: 'absolute',

@@ -23,7 +23,7 @@ const UniversityItem = ({ logo, name, address, phoneNumber, website, onPress }) 
                     <Text style={styles.text2}>{phoneNumber}</Text>
                 </View>
                 <View style={styles.textRow}>
-                    <MaterialCommunityIcons name="phone" size={10} />
+                    <MaterialCommunityIcons name="earth" size={10} />
                     <Text style={styles.text2}>{website}</Text>
                 </View>
             </View>
@@ -51,7 +51,7 @@ const Index = ({ navigation }) => {
             setSchools(list);
             setLoading(false);
         }).catch(error => {
-            console.log('An error occur when fetching school', error);
+            // console.log('An error occur when fetching school', error);
             setLoading(false);
         });
     }
