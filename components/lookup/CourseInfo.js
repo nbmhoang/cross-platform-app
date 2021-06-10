@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, useWindowDimensions } from "react-native";
 import { List } from 'react-native-paper';
+import HTML from "react-native-render-html";
 
 import styles from './styles';
 
-const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCode, yearStart }) => {
+const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCode, yearStart, mark19, mark20, mark21, aboutUs }) => {
 
     const [expanded, setExpanded] = useState(true);
 
     const handlePress = () => setExpanded(!expanded);
+
+    const contentWidth = useWindowDimensions().width;
 
     return (
         <ScrollView>
             <Image source={{uri :banner}} style={styles.banner} />
             <View style={styles.container}>
                 <View style={styles.title}>
-                    <View>
+                    <View style={{width: '80%'}}>
                         <Text style={styles.schoolName}>{schoolName}</Text>
                         <Text style={styles.courseName}>{courseName}</Text>{}
                     </View>
-                    <Image source={logoImage} style={styles.logo2} />
+                    <Image source={{uri: logoImage}} style={styles.logo2} />
                 </View>
                 <List.Section>
                     <List.Accordion
@@ -42,14 +45,19 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
                         style={styles.list}
                         titleStyle={styles.listTitle}
                     >
-                        <List.Item right={(props) => <List.Icon {...props} icon="equal" />} title="First item" />
+                        <View style={styles.content}>
+                            <Text style={styles.text}>Điểm chuẩn năm 2019: {mark19}</Text>
+                            <Text style={styles.text}>Điểm chuẩn năm 2020: {mark20}</Text>
+                            <Text style={styles.text}>Điểm chuẩn năm 2021: {mark21}</Text>
+                        </View>
                     </List.Accordion>
                     <List.Accordion
                         title="III. GIỚI THIỆU"
                         style={styles.list}
                         titleStyle={styles.listTitle}
                     >
-
+                        {aboutUs &&
+                        <HTML source={{ html: aboutUs }} contentWidth={contentWidth} /> }
                     </List.Accordion>
                     <List.Accordion
                         title="IV. CHUẨN ĐẦU RA"
@@ -73,7 +81,7 @@ const Info = ({ banner, logoImage, courseName, schoolName, schoolCode, courseCod
 
 const CourseInfo = ({ route }) => {
 
-    const { banner, logoImage, courseName, schoolName, schoolCode, courseCode, yearStart } = route.params;
+    const { banner, logoImage, courseName, schoolName, schoolCode, courseCode, yearStart, mark19, mark20, benchmark, aboutUs } = route.params;
 
     return (
         <Info 
@@ -84,6 +92,10 @@ const CourseInfo = ({ route }) => {
             schoolCode={schoolCode}
             courseCode={courseCode}
             yearStart={yearStart}
+            mark19={mark19}
+            mark20={mark20}
+            mark21={benchmark}
+            aboutUs={aboutUs}
         />
     )
 }

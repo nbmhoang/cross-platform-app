@@ -14,9 +14,9 @@ const Course = ({ logoImage, courseName, schoolName, benchmark, onPress }) => {
                 <Image source={{ uri: logoImage }} style={styles.logo} />
                 <View style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
                     <Text style={styles.boldText}>{courseName}</Text>
-                    <Text style={styles.text}>{schoolName}</Text>
+                    <Text style={styles.text1}>{schoolName}</Text>
                     <View style={{flexDirection: 'row'}}>
-                        {benchmark && <><Text style={styles.text}>Điểm chuẩn 2020: </Text><Text style={styles.boldText}>{benchmark}</Text></>}
+                        {benchmark && <><Text style={styles.text3}>Điểm chuẩn 2020: </Text><Text style={styles.boldText}>{benchmark}</Text></>}
                     </View>
                 </View>
             </View>
@@ -94,6 +94,7 @@ const BenchmarkLookup = ({ navigation }) => {
         { universityName: 'Trường Đại học CNTT và Truyền thông Việt - Hàn', code: 'vku' },
         { universityName: 'Phân hiệu Đại học Đà Nẵng tại Kon Tum', code: 'udck' },
         { universityName: 'Khoa Y Dược', code: 'smp' },
+        { universityName: 'Khoa Giáo dục thể chất', code: 'fpe' },
         { universityName: 'Viện nghiên cứu và đào tạo Việt - Anh', code: 'vnuk' }
     ]
 
@@ -112,7 +113,13 @@ const BenchmarkLookup = ({ navigation }) => {
                             logoImage: data.logo,
                             courseName: majorInfo.name,
                             schoolName: data.name,
-                            benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0]
+                            benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0],   
+                            courseCode: majorId,
+                            schoolCode: data['university-code'],
+                            banner: data.banner,
+                            mark20: majorInfo['min-mark'] && majorInfo['min-mark'][1],
+                            mark19: majorInfo['min-mark'] && majorInfo['min-mark'][2],
+                            aboutUs: data.vision
                         })
                     }
                     setData(list);
@@ -128,9 +135,12 @@ const BenchmarkLookup = ({ navigation }) => {
                                 courseName: majorInfo.name,
                                 schoolName: data.name,
                                 benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0],
-                                // banner: require('../../assets/images/school-banner/vku.jpg'),
                                 schoolCode: data['university-code'],
                                 courseCode: majorId,
+                                banner: data.banner,
+                                mark20: majorInfo['min-mark'] && majorInfo['min-mark'][1],
+                                mark19: majorInfo['min-mark'] && majorInfo['min-mark'][2],
+                                aboutUs: data.vision
                                 // yearStart: "2017"
                             })
                         }
@@ -157,9 +167,12 @@ const BenchmarkLookup = ({ navigation }) => {
                                     courseName: majorInfo.name,
                                     schoolName: universityData.name,
                                     benchmark: majorInfo['min-mark'] && majorInfo['min-mark'][0],
-                                    // banner: require('../../assets/images/school-banner/vku.jpg'),
                                     schoolCode: universityData['university-code'],
                                     courseCode: majorId,
+                                    banner: universityData.banner,
+                                    mark20: majorInfo['min-mark'] && majorInfo['min-mark'][1],
+                                    mark19: majorInfo['min-mark'] && majorInfo['min-mark'][2],
+                                    aboutUs: universityData.vision
                                     // yearStart: "2017"
                                 })
                             }
@@ -172,6 +185,8 @@ const BenchmarkLookup = ({ navigation }) => {
         }
         
     }
+
+    console.log(data);
 
     return (
         <ScrollView style={styles.container}>
@@ -199,7 +214,16 @@ const BenchmarkLookup = ({ navigation }) => {
                 schoolName={item.schoolName} 
                 benchmark={item.benchmark}
                 onPress={() => navigation.navigate('CourseInfo', {
-                    
+                    logoImage: item.logoImage,
+                    courseName: item.courseName,
+                    schoolName: item.schoolName,
+                    benchmark: item.benchmark,
+                    courseCode: item.courseCode,
+                    schoolCode: item.schoolCode,
+                    banner: item.banner,
+                    mark20: item.mark20,
+                    mark19: item.mark19,
+                    aboutUs: item.aboutUs
                 })}
             />
             )) : <ActivityIndicator animating={true} size={50} />}

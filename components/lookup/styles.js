@@ -41,10 +41,20 @@ const styles = StyleSheet.create({
     },
     boldText: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        width: deviceWidth-110
     },
     text: {
+        fontSize: 16,
+        marginTop: 5,
+        marginBottom: 5
+    },
+    text1: {
         fontSize: 18,
+        width: deviceWidth-110
+    },
+    text3: {
+        fontSize: 18
     },
     menuOption: {
         flexDirection: 'row',
